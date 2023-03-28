@@ -7,11 +7,11 @@ using namespace std;
 // } Driver Code Ends
 // User function Template for C++
 
-class DSU{
+class Disjointset{
 public:
 
   vector<int> rank,size,parent;
-    DSU(int n){
+    Disjointset(int n){
           rank.resize(n+1,0);
           size.resize(n+1,1);
           parent.resize(n+1);
@@ -70,7 +70,7 @@ class Solution {
         // code here
         int n= details.size();
         unordered_map<string,int> mp;
-        DSU dsu(n);
+        Disjointset dsu(n);
         for(int i=0;i<n;i++){
             for(int j=1;j<details[i].size();j++){
                 string mail=details[i][j];
@@ -78,7 +78,7 @@ class Solution {
                     mp[mail]=i;
                 }
                 else{
-                    dsu.unionByRank(mp[mail],i); // dsu.unionBySize(i,mp[mail]) gives WA why????
+                    dsu.unionByRank(mp[mail],i);
                 }
             }
         }
