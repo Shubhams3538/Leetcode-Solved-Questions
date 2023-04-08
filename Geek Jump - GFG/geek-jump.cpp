@@ -5,20 +5,19 @@ using namespace std;
 
 // } Driver Code Ends
 class Solution {
-    public:
-    // using dp and memorization time complexity O(N) and space is O(N)+O(N) for stack and extra dp array
-    int find(vector<int>&height,int index,vector<int>&dp){
-        if(index==0) return 0;
-        if(dp[index]!=-1) return dp[index];
-        int left=find(height,index-1,dp)+abs(height[index]-height[index-1]);
-        int right=INT_MAX;
-    if(index>1) right=find(height,index-2,dp)+abs(height[index]-height[index-2]);
-    return dp[index]=min(left,right);
-    }
   public:
+  // using dp and tabulation here time complexity is same as memorization that is O(N) but space is only O(N)
+  // that is not extra stack space required...
     int minimumEnergy(vector<int>& height, int n) {
-      vector<int>dp(n+1,-1);
-      return find(height,n-1,dp);
+        vector<int>dp(n,0);
+        dp[0]=0;
+        for(int i=1;i<n;i++){
+            int left=dp[i-1]+abs(height[i]-height[i-1]);
+            int right=INT_MAX;
+            if(i>1) right=dp[i-2]+abs(height[i]-height[i-2]);
+            dp[i]=min(left,right);
+        }
+        return dp[n-1];
     }
 };
 
