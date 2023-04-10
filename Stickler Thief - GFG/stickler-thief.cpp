@@ -7,6 +7,7 @@ typedef long long int ll;
 class Solution
 {
     public:
+    // using tabulation and space optimization time is O(N) and space is O(1)
     //Function to find the maximum money the thief can get.
     int FindMaxSum(int arr[], int n)
     {
