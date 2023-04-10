@@ -7,22 +7,24 @@ using namespace std;
 // } Driver Code Ends
 //User function template for C++
 class Solution{
-    // using memoization dp time complexity O(N) and space is O(N)+o(N) stack space and dp array......
-    private:
-    int find_max(int * arr,int index,vector<int>&dp)
-    {
-        if(index==0) return arr[index];
-        if(index<0) return 0;
-        if(dp[index]!=-1) return dp[index];
-        int pick=arr[index]+find_max(arr,index-2,dp);
-        int notpick=0+find_max(arr,index-1,dp);
-        return dp[index]=max(pick,notpick);
-    }
+    // using tabulation we will have time O(N) and space O(N) that is the dp arrray
+    // but here we have used space optimization that is we don't need the whole array we just need prev two
+    // values so now
+    
+    // time O(N) and space is O(1)
 public:	
 	// calculate the maximum sum with out adjacent
 	int findMaxSum(int *arr, int n) {
-	   vector<int>dp(n,-1);
-	   return find_max(arr,n-1,dp);
+	    int prev=arr[0],prev2=0;  // (i-1) && (i-2)
+	    for(int i=1;i<n;i++){
+	        int take=arr[i];
+	        if(i>1) take+=prev2;
+	        int nottaken=0+prev;
+	        int curr=max(take,nottaken);
+	        prev2=prev;
+	        prev=curr;
+	    }
+	    return prev;
 	}
 };
 
