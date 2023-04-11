@@ -5,6 +5,8 @@ using namespace std;
 // } Driver Code Ends
 class Solution {
     private:
+    // using memoization dp and time complexity is O(N*4)*3 i.e O(N*12) === O(N) 
+    // and  space complexity of O(N)+O(N*4) i.e stack space + dp vector 
     int find_max(vector<vector<int>>&points,int index,int last_task,vector<vector<int>>&dp){
         if(index==0){
             int maxi=0;
