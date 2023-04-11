@@ -5,7 +5,9 @@ using namespace std;
 // } Driver Code Ends
 class Solution {
     private:
-    // using memoization dp and time complexity is O(N*4)*3 i.e O(N*12) === O(N) 
+    // using memoization dp and time complexity is O(N*4)*3 // running a
+   // for loop for every state of size 3 so multiplied by 3 and there is total 
+   // n*4 states or elements i.e O(N*12) === O(N) // 
     // and  space complexity of O(N)+O(N*4) i.e stack space + dp vector 
     int find_max(vector<vector<int>>&points,int index,int last_task,vector<vector<int>>&dp){
         if(index==0){
