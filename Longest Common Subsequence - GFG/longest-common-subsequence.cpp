@@ -9,13 +9,12 @@ using namespace std;
 class Solution
 {
     public:
-    //Function to find the length of longest common subsequence in two strings.
+  // using tabulation + space optimization time is O(N*M) ans space is O(M)
     int lcs(int n, int m, string s1, string s2)
     {
 
     vector<int> prev(m+1,0), cur(m+1,0);
     
-    // Base Case is covered as we have initialized the prev and cur to 0.
     
     for(int ind1=1;ind1<=n;ind1++){
         for(int ind2=1;ind2<=m;ind2++){
