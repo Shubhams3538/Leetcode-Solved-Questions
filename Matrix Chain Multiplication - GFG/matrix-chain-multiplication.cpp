@@ -8,25 +8,39 @@ using namespace std;
 // User function Template for C++
 
 class Solution{
-    // using memoization time is O(N*N*N) and space is O(N*N)+O(N) // for the dp and the stack space 
-    private:
-    int find_min(int i , int j , int arr[] , vector<vector<int>>&dp){
-        if(i==j) return 0; // base case 
-        if(dp[i][j]!=-1) return dp[i][j];
-        int mini=1e9;
-        for(int k=i;k<j;k++){
-            int steps=arr[i-1]*arr[k]*arr[j]+find_min(i,k,arr,dp)+find_min(k+1,j,arr,dp); // main formula need
-            // to understand how it came in 
-            if(steps<mini) mini=steps;  
-        }
-        return dp[i][j]=mini;
-    }
 public:
-    int matrixMultiplication(int N, int arr[])
-    {
-       vector<vector<int>>dp(N,vector<int>(N,-1));
-       return find_min(1,N-1,arr,dp);
+// using tabulaiton time is O(N*N*N) and space is O(N*N) for the dp array 
+    int matrixMultiplication(int N, int arr[]){
+   vector<vector<int>> dp(N,vector<int>(N,-1));
+    
+    for(int i=1; i<N; i++){ // base case 
+        dp[i][i] = 0;
     }
+    
+    for(int i=N-1; i>=1; i--){
+        
+        for(int j=i+1; j<N; j++){
+            
+            int mini = INT_MAX;
+    
+            // partioning loop
+            for(int k = i; k<= j-1; k++){
+                
+                int ans = dp[i][k]+ dp[k+1][j] + arr[i-1]*arr[k]*arr[j];
+                
+                mini = min(mini,ans);
+                
+            }
+            
+            dp[i][j] = mini;
+    
+        }
+    }
+    
+    return dp[1][N-1];
+    
+    
+}
 };
 
 //{ Driver Code Starts.
